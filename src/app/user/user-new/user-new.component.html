@@ -1,0 +1,7 @@
+<h3>New User</h3>
+<form (submit)="create()">
+  <input type="text" name="name" [(ngModel)]="newUser.name">
+  <input type="text" name="username" [(ngModel)]="newUser.userName">
+  <input type="text" name="email" [(ngModel)]="newUser.email">
+  <input type="submit">
+</form>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { User } from './user';
+import { TodoService } from '../todo-list/todo.service';
+import { TodoItem } from '../todo-list/todo-item';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-user',
@@ -9,8 +12,9 @@ import { User } from './user';
 })
 export class UserComponent implements OnInit {
   users: {};
-  constructor(private userService: UserService) {
-    this.getUsers();
+  userItems: any;
+  constructor(private userService: UserService, private todoService: TodoService) {
+
   }
 
   getUsers() {
@@ -27,6 +31,21 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
+    //this.getUsers();
+    this.todoService.getUserTodoItems().map((response)=>{
+        this.userItems = response;
+      }
+    ).subscribe();
 
+   /*  login(username: String, password: String) {
+      return this.http.post('/authenticate/user', JSON.stringify({username : username, password : password}))
+      .map((response: Response) => {
+          const user = response.json();
+          if (user && user.token) {
+             localStorage.setItem('currentUser', JSON.stringify(user));
+          }
+          return user;
+      });
+  } */
+  }
 }

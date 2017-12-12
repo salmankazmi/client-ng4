@@ -12,6 +12,7 @@ import { UserService } from './user/user.service';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { FormsModule } from '@angular/forms';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoService } from './todo-list/todo.service';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService, {
+  providers: [UserService, TodoService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true

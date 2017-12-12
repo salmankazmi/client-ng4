@@ -1,7 +1,7 @@
 <h3>TODO List</h3>
 <div class="m-t-1 m-b-1">
-  <input type="text" class="form-control" #todoText />
-  <button class="btn btn-primary m-t-1" (click)="addItem(todoText.value)">
+  <input type="text" class="form-control" placeholder="Enter New Item" #todoText />
+  <button class="btn btn-primary m-t-1" (click)="addItem(todoText.value); todoText.value=''">
     Add
   </button>
 </div>
@@ -22,3 +22,6 @@
     </td>
   </tr>
 </table>
+<div>
+  Items to complete: {{toDoItems.length}}
+</div>

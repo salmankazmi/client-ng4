@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TodoItem } from './todo-item';
 
 @Component({
@@ -7,24 +7,24 @@ import { TodoItem } from './todo-item';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  items = [
-      new TodoItem('Buy Flowers', false),
-      new TodoItem('Get Shoes', false),
-      new TodoItem('Collect Tickets', true),
-      new TodoItem('Call Joe', false),
-    ];
-
-  constructor() { }
+  @Input() items: any;
+  toDoItems: any;
+  constructor() {
+    
+  }
 
   ngOnInit() {
   }
 
   getListOfItems() {
-    return this.items.filter(item=>!item.isComplete);
+    if(this.items){
+      this.toDoItems = this.items.filter(item => !item.isComplete);
+      return this.toDoItems;
+    }
   }
 
-  addItem(newItem){
-    if(newItem!=''){
+  addItem(newItem) {
+    if (newItem != '') {
       this.items.push(new TodoItem(newItem, false));
     }
   }
